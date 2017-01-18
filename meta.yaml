@@ -1,0 +1,66 @@
+{% set version = "2.1.0" %}
+
+package:
+  name: kripodb
+  version: {{ version }}
+
+source:
+  git_rev: v{{ version }}
+  git_url: https://github.com/3D-e-Chem/kripodb.git
+
+build:
+    script: python setup.py install --single-version-externally-managed --record record.txt
+    number: 0
+    entry_points:
+      - kripodb = kripodb.script:main
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - rdkit
+    - pytables
+    - pandas
+    - scipy
+    - requests
+    - six
+    - progressbar2
+    - flask
+    - jsonschema
+    - pyyaml
+    - click
+
+  run:
+    - python
+    - setuptools
+    - rdkit
+    - pytables
+    - pandas
+    - scipy
+    - requests
+    - six
+    - progressbar2
+    - flask
+    - jsonschema
+    - pyyaml
+    - click
+
+test:
+  source_files:
+    - setup.cfg
+    - data
+    - tests
+  requires:
+    - pytest
+    - mock
+    - webtest
+
+about:
+  home: https://github.com/3D-e-Chem/kripodb.git
+  license: Apache v2 License
+  license_file: LICENSE
+  summary: 'Library to interact with Kripo fragment, fingerprint and similarity data files.'
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
